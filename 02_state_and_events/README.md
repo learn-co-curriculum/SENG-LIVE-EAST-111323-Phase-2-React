@@ -67,6 +67,65 @@ Otherwise, events are more or less the same as they are in vanilla JS. With one 
 
 ### State
 
+## what is a stateless component?
+- static 
+- wouldn't store any new changes
+- not interactive 
+- not using user's input data
+- doesn't use "useState" hook
+- use props only
+
+## why is it important to understand state and event together?
+- events will trigger some changes in our components
+- state will determine when a component will re-render
+
+
+## states and events
+- events get triggered  -> causes
+- state change -> causes 
+- component re-rendering -> causes 
+- DOM manipulation
+
+## what is state?
+- private data owned by a component 
+- state's values can change 
+- to initialize, utilize `useState` hook
+- state controls how the component behaves 
+
+//array destructuring 
+const [ variable, setVariable ] = useState(initialState)
+
+  // const [ count, setCount ] = useState(0) //array destructuring
+  
+  // const countStateArr = useState(0)
+  // console.log(countStateArr)
+
+  // const count = countStateArr[0]
+  // const setCount = countStateArr[1]
+  //countStateArr === [0, setCount]
+
+  // const arr = useState(0)
+  // console.log(arr)
+  // // [0, setterfunction]
+
+  // const count = arr[0]
+  // const setCount = arr[1]
+
+  // const [count, setCount ] = useState(0)
+
+## What is the difference between props and state:
+- Props are immutable, which means they can not be changed; they are read-only.
+- State can be changed and updated BUT only in the component that owns it. 
+
+
+##  Toggle function recap 
+- create an onClick event on DOM button in JSX
+- attach a handleToggle event handler to the event 
+- define the `isDarkMode` state 
+- define the setter function, with the `setIsDarkMode`, utilizing ! bang operator on state 
+- this causes component re-render
+- button changes! DOM manipulation!
+
 State is used for data that needs to be dynamic. Where props are passed down from parents to children and are static, values stored in state are meant to change, especially as the user interacts with the DOM.
 
 This is a key component of declarative programming in React: we tie our components to our state by integrating values in state into logic (e.g. conditional rendering). This way, changes in state eventually cause changes to the DOM.
