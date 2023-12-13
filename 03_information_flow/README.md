@@ -133,3 +133,11 @@ function Child({ search, onSearchChange }) {
 
 - Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor.
 - If two sibling components need access to the same `state`, you will want to place the shared `state` in a parent container. Then you can pass down that `state` as well as any functions that need to modify the state as props to the two sibling components that need to display and/or change that data.
+
+
+## Why do we NOT pass down the setter function as a prop?
+- Controlled State Management: So the state can be controlled by the component where it lives, not by another component. 
+
+- Clear separation of concern: The child component's responsibility is to present the UI and notify the parent component when it needs a state change. 
+
+- Reusability: When a child component relies on a callback function instead of knowing about the state structure or setter function it becomes more reusable. 
