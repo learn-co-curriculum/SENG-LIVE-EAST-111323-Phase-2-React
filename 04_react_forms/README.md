@@ -31,6 +31,10 @@
 
 ## Using Forms
 
+
+
+### State, Input element, onChange
+
 ### Process: Making a Controlled Form
 
 1. For each input element in the form, create a new state variable
@@ -289,3 +293,37 @@ function updateCustomer(id, name) {
   setCustomers(updatedCustomers);
 }
 ```
+
+
+
+## What does it mean when a component is controlled?
+### Uncontrolled form with vanilla JS:
+- The form data is managed by the DOM itself.
+- We directly access DOM elements to retrieve the values when it's needed.
+### Controlled Form with REACT JS:
+- The form data is managed by the React component's state.
+- The form fields are bound to the state, and their values are updated via event handlers.
+
+## In a controlled form, what determines the input values?
+In a controlled form, the input values are often managed by the component's `STATE`
+
+
+## How is form state updated when handling React forms?
+1. initiate the state 
+2. add input element in the form bind `value` property 
+3. attach `onChange` event handler 
+4. update state using the setter func
+5. component re-render
+
+## Identify the three pieces necessary to make a controlled form:
+1. STATE: to maintain the form values dynamically
+2. INPUT element with `value` and `name` properties 
+3. onChange event + event handler 
+
+
+# What attribute on an input field corresponds with a state variable? 
+value={formData.about}
+
+## What should the attribute ‘name’ on an input field correspond with?
+
+the key name in the form state object!
