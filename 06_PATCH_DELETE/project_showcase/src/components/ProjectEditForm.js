@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const ProjectEditForm = ({ projectId, completeEditing }) => {
+const ProjectEditForm = ({ projectId, completeEditing, onEditingProject }) => {
   const initialState = {
-    name: "",
+   
+    image: "", name: "",
     about: "",
     phase: "",
     link: "",
-    image: "",
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -27,6 +27,22 @@ const ProjectEditForm = ({ projectId, completeEditing }) => {
   function handleSubmit(e) {
     e.preventDefault();
     // Add code here
+    //POST GET /projects
+    //PATCH DELETE /projects/:id
+
+    //1. we need to send the request to the server PATCH
+    fetch(`http://localhost:4000/projects/${projectId}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(formData) //newly edited project obj
+    })
+    .then(response => response.json())
+    .then(editedProject => onEditingProject(editedProject))
+    //2. we are going to update the DOM by updating the state
+    // inside of our APP component
+
     completeEditing();
   }
 
