@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom"
 
 const ProjectListItem = ({
   project,
@@ -28,8 +29,10 @@ const ProjectListItem = ({
   return (
     <li className="card">
       <figure className="image">
-        <img src={image} alt={name} />
-        <button onClick={handleClap} className="claps">
+         <Link to ={`/projects/${id}`} > 
+            <img src={image} alt={name} />
+         </Link>
+          <button onClick={handleClap} className="claps">
           👏{clapCount}
         </button>
       </figure>
@@ -47,9 +50,12 @@ const ProjectListItem = ({
       <footer className="extra">
         <span className="badge blue">Phase {phase}</span>
         <div className="manage">
-          <button onClick={handleEditClick}>
+          <Link 
+            className="button"
+            onClick={handleEditClick}
+            to={`/projects/${id}/edit`}>
             <FaPencilAlt />
-          </button>
+          </Link>
           <button onClick={handleDeleteClick}>
             <FaTrash />
           </button>

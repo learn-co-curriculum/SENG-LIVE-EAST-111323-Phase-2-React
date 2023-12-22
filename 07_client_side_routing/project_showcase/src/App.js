@@ -4,12 +4,18 @@ import Header from "./components/Header";
 import ProjectForm from "./components/ProjectForm";
 import ProjectList from "./components/ProjectList";
 import ProjectEditForm from "./components/ProjectEditForm";
-import ProjectPage from "./components/ProjectPage"
 import Home from "./components/Home";
+import ProjectDetail from "./components/ProjectDetail"
+
+import { 
+  Routes,
+  Route
+} from "react-router-dom"
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [projects, setProjects] = useState([]);
+  const [ projectId, setProjectId] = useState(0)
 
   useEffect(() => {
     fetch("http://localhost:4000/projects")
@@ -46,14 +52,40 @@ const App = () => {
   return (
     <div className={isDarkMode ? "App" : "App light"}>
       <Header isDarkMode={isDarkMode} onToggleDarkMode={onToggleDarkMode} />
-      <Home />
-      <ProjectList
-        projects={projects}
-        onDeleteProject={onDeleteProject}
-      />
-      <ProjectEditForm onUpdateProject={onUpdateProject} />
-      <ProjectForm onAddProject={onAddProject} />
-      <ProjectPage />
+
+      <Routes>
+          <Route  
+            path="/"
+            element={ <Home />} 
+          />
+
+          <Route 
+            path="/projects"
+            element={ <ProjectList
+                  projects={projects}
+                  onDeleteProject={onDeleteProject}
+            />}
+          />
+          
+          <Route 
+              path="/projects/new"
+              element={
+                <ProjectForm 
+                      onAddProject={onAddProject} />
+              }
+          />
+         
+            <Route 
+                path="/projects/:id/edit"
+                element={<ProjectEditForm onUpdateProject={onUpdateProject} />}
+              />
+
+              <Route 
+                  path="/projects/:id"
+                  element={<ProjectDetail/>}
+                  />
+
+      </Routes>
     </div>
   );
 };
